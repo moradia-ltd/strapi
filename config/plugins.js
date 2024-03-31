@@ -22,7 +22,7 @@ module.exports = ({ env }) => ({
     config: {
       provider: '@strapi-community/strapi-provider-upload-google-cloud-storage',
       providerOptions: {
-        // serviceAccount: env.json('GCS_SERVICE_ACCOUNT'),
+        serviceAccount: env.json('GCS_SERVICE_ACCOUNT'),
         bucketName: "strapi-togetha",
         publicFiles: true,
         uniform: false,
