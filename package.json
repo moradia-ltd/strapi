@@ -10,7 +10,6 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi-community/strapi-provider-upload-google-cloud-storage": "^4.10.5",
     "@strapi/plugin-i18n": "4.17.1",
     "@strapi/plugin-users-permissions": "4.17.1",
     "@strapi/strapi": "4.17.1",
@@ -19,6 +18,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.3.4",
     "strapi-plugin-import-export-entries": "^1.23.1",
+    "strapi-provider-cloudflare-r2": "^0.2.5",
     "strapi-provider-email-resend": "^1.0.4",
     "styled-components": "^5.3.11"
   },
@@ -28,8 +28,5 @@
   "strapi": {
     "uuid": "35d7a084-3088-4d0b-869e-f503693ee8e5"
   },
-  "license": "MIT",
-  "bundleDependencies": [
-    "@strapi-community/strapi-provider-upload-google-cloud-storage"
-  ]
+  "license": "MIT"
 }
