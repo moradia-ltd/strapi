@@ -25,15 +25,14 @@ module.exports = ({ env }) => ({
     config: {
       provider: "strapi-provider-cloudflare-r2",
       providerOptions: {
-        accessKeyId: env("CF_ACCESS_KEY_ID"),
-        secretAccessKey: env("CF_ACCESS_SECRET"),
-    
-        endpoint: env("CF_ENDPOINT"),
+        accessKeyId: env("AWS_ACCESS_KEY_ID"),
+        secretAccessKey: env("AWS_ACCESS_SECRET"),
+        endpoint: env("AWS_ENDPOINT"),
         params: {
-          Bucket: env("CF_BUCKET"),
+          Bucket: env("AWS_BUCKET"),
         },
    
-        cloudflarePublicAccessUrl: env("CF_PUBLIC_ACCESS_URL"),
+        cloudflarePublicAccessUrl: env("AWS_PUBLIC_ACCESS_URL"),
       },
       actionOptions: {
         upload: {},
