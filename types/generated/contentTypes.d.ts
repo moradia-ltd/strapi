@@ -973,6 +973,38 @@ export interface ApiTeamTeam extends Schema.CollectionType {
   };
 }
 
+export interface ApiVideoVideo extends Schema.CollectionType {
+  collectionName: 'videos';
+  info: {
+    singularName: 'video';
+    pluralName: 'videos';
+    displayName: 'Video';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    thumbnail: Attribute.Media;
+    url: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::video.video',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::video.video',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -997,6 +1029,7 @@ declare module '@strapi/types' {
       'api::feature.feature': ApiFeatureFeature;
       'api::tag.tag': ApiTagTag;
       'api::team.team': ApiTeamTeam;
+      'api::video.video': ApiVideoVideo;
     }
   }
 }
