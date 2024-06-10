@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "founding_stories",
+  "info": {
+    "singularName": "founding-story",
+    "pluralName": "founding-stories",
+    "displayName": "Founding story"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "blocks"
+    }
+  }
+}
