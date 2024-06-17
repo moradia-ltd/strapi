@@ -972,6 +972,75 @@ export interface ApiFoundingStoryFoundingStory extends Schema.SingleType {
   };
 }
 
+export interface ApiGuideGuide extends Schema.CollectionType {
+  collectionName: 'guides';
+  info: {
+    singularName: 'guide';
+    pluralName: 'guides';
+    displayName: 'Guide';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    question: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    answer: Attribute.Blocks &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'api::guide.guide', 'question'>;
+    category: Attribute.Enumeration<
+      ['tenant', 'landlord', 'agency', 'general']
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    image: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::guide.guide',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::guide.guide',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::guide.guide',
+      'oneToMany',
+      'api::guide.guide'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiSubscriptionPlanSubscriptionPlan
   extends Schema.CollectionType {
   collectionName: 'subscription_plans';
@@ -1060,46 +1129,6 @@ export interface ApiTeamTeam extends Schema.CollectionType {
   };
 }
 
-export interface ApiTenantGuideTenantGuide extends Schema.CollectionType {
-  collectionName: 'tenant_guides';
-  info: {
-    singularName: 'tenant-guide';
-    pluralName: 'tenant-guides';
-    displayName: 'Guide';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    question: Attribute.String & Attribute.Required;
-    answer: Attribute.Blocks & Attribute.Required;
-    image: Attribute.Media;
-    category: Attribute.Enumeration<
-      ['tenants', 'landlords', 'agencies', 'general']
-    > &
-      Attribute.Required &
-      Attribute.DefaultTo<'general'>;
-    country: Attribute.String &
-      Attribute.CustomField<'plugin::country-select.country'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::tenant-guide.tenant-guide',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::tenant-guide.tenant-guide',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiVideoVideo extends Schema.CollectionType {
   collectionName: 'videos';
   info: {
@@ -1157,10 +1186,10 @@ declare module '@strapi/types' {
       'api::faq.faq': ApiFaqFaq;
       'api::feature.feature': ApiFeatureFeature;
       'api::founding-story.founding-story': ApiFoundingStoryFoundingStory;
+      'api::guide.guide': ApiGuideGuide;
       'api::subscription-plan.subscription-plan': ApiSubscriptionPlanSubscriptionPlan;
       'api::tag.tag': ApiTagTag;
       'api::team.team': ApiTeamTeam;
-      'api::tenant-guide.tenant-guide': ApiTenantGuideTenantGuide;
       'api::video.video': ApiVideoVideo;
     }
   }
