@@ -31,12 +31,6 @@
         "videos",
         "audios"
       ]
-    },
-    "blog_posts": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::blog-post.blog-post",
-      "mappedBy": "author"
     }
   }
 }

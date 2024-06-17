@@ -784,11 +784,6 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
     email: Attribute.Email;
     job_title: Attribute.String;
     image: Attribute.Media;
-    blog_posts: Attribute.Relation<
-      'api::author.author',
-      'oneToMany',
-      'api::blog-post.blog-post'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -824,11 +819,6 @@ export interface ApiBlogPostBlogPost extends Schema.CollectionType {
     body: Attribute.Blocks & Attribute.Required;
     cover_image: Attribute.Media;
     thumbnail: Attribute.Media;
-    author: Attribute.Relation<
-      'api::blog-post.blog-post',
-      'manyToOne',
-      'api::author.author'
-    >;
     summary: Attribute.Text;
     tags: Attribute.Relation<
       'api::blog-post.blog-post',
@@ -967,13 +957,31 @@ export interface ApiFaqFaq extends Schema.CollectionType {
     singularName: 'faq';
     pluralName: 'faqs';
     displayName: 'faq';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    question: Attribute.String & Attribute.Required;
-    answer: Attribute.Text & Attribute.Required;
+    question: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    answer: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -981,6 +989,12 @@ export interface ApiFaqFaq extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::faq.faq', 'oneToOne', 'admin::user'> &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::faq.faq',
+      'oneToMany',
+      'api::faq.faq'
+    >;
+    locale: Attribute.String;
   };
 }
 
