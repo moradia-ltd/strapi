@@ -1060,6 +1060,46 @@ export interface ApiTeamTeam extends Schema.CollectionType {
   };
 }
 
+export interface ApiTenantGuideTenantGuide extends Schema.CollectionType {
+  collectionName: 'tenant_guides';
+  info: {
+    singularName: 'tenant-guide';
+    pluralName: 'tenant-guides';
+    displayName: 'Guide';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    question: Attribute.String & Attribute.Required;
+    answer: Attribute.Blocks & Attribute.Required;
+    image: Attribute.Media;
+    category: Attribute.Enumeration<
+      ['tenants', 'landlords', 'agencies', 'general']
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'general'>;
+    country: Attribute.String &
+      Attribute.CustomField<'plugin::country-select.country'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tenant-guide.tenant-guide',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tenant-guide.tenant-guide',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiVideoVideo extends Schema.CollectionType {
   collectionName: 'videos';
   info: {
@@ -1120,6 +1160,7 @@ declare module '@strapi/types' {
       'api::subscription-plan.subscription-plan': ApiSubscriptionPlanSubscriptionPlan;
       'api::tag.tag': ApiTagTag;
       'api::team.team': ApiTeamTeam;
+      'api::tenant-guide.tenant-guide': ApiTenantGuideTenantGuide;
       'api::video.video': ApiVideoVideo;
     }
   }
