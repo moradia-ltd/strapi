@@ -26,13 +26,26 @@
       }
     },
     "answer": {
-      "type": "text",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "type": "blocks"
+    },
+    "category": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "tenant",
+        "landlord",
+        "agency",
+        "general"
+      ]
     }
   }
 }

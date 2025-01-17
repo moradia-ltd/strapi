@@ -975,8 +975,15 @@ export interface ApiFaqFaq extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    answer: Attribute.Text &
-      Attribute.Required &
+    answer: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    category: Attribute.Enumeration<
+      ['tenant', 'landlord', 'agency', 'general']
+    > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
