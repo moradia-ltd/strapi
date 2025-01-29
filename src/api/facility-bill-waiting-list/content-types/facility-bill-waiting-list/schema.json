@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "facility_bill_waiting_lists",
+  "info": {
+    "singularName": "facility-bill-waiting-list",
+    "pluralName": "facility-bill-waiting-lists",
+    "displayName": "Facility Bill Waiting List"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "full_name": {
+      "type": "string"
+    },
+    "account_type": {
+      "type": "enumeration",
+      "enum": [
+        "agency",
+        "landlord",
+        "property_management",
+        "facility"
+      ]
+    },
+    "number_of_tenants": {
+      "type": "integer"
+    },
+    "number_of_units": {
+      "type": "integer"
+    },
+    "location": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone_number": {
+      "type": "string"
+    }
+  }
+}

@@ -951,6 +951,45 @@ export interface ApiContactDetailContactDetail extends Schema.SingleType {
   };
 }
 
+export interface ApiFacilityBillWaitingListFacilityBillWaitingList
+  extends Schema.CollectionType {
+  collectionName: 'facility_bill_waiting_lists';
+  info: {
+    singularName: 'facility-bill-waiting-list';
+    pluralName: 'facility-bill-waiting-lists';
+    displayName: 'Facility Bill Waiting List';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    full_name: Attribute.String;
+    account_type: Attribute.Enumeration<
+      ['agency', 'landlord', 'property_management', 'facility']
+    >;
+    number_of_tenants: Attribute.Integer;
+    number_of_units: Attribute.Integer;
+    location: Attribute.String;
+    email: Attribute.Email;
+    phone_number: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::facility-bill-waiting-list.facility-bill-waiting-list',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::facility-bill-waiting-list.facility-bill-waiting-list',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiFaqFaq extends Schema.CollectionType {
   collectionName: 'faqs';
   info: {
@@ -1400,6 +1439,7 @@ declare module '@strapi/types' {
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::changelog.changelog': ApiChangelogChangelog;
       'api::contact-detail.contact-detail': ApiContactDetailContactDetail;
+      'api::facility-bill-waiting-list.facility-bill-waiting-list': ApiFacilityBillWaitingListFacilityBillWaitingList;
       'api::faq.faq': ApiFaqFaq;
       'api::feature.feature': ApiFeatureFeature;
       'api::founding-story.founding-story': ApiFoundingStoryFoundingStory;
